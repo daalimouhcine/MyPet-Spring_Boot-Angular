@@ -42,7 +42,7 @@ git clone https://github.com/daalimouhcine/MyPet-Spring_Boot.git
 ```
 2. Navigate to the root directory of the project
 ```
-cd my-pet-application
+cd mypet-application
 ```
 3. Install the backend dependencies
 ```
