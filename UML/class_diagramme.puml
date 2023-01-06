@@ -44,16 +44,16 @@ class ResponseComment {
 }
 
 
-Person "1" -- "0.*" Animal
-Person "1" -- "0.*" Post
-Person "1" -- "0.*" Comment
-Person "1" -- "0.*" ResponseComment
-Person "1" -- "0.*" AdoptionContract
+Person "1" --* "0.*" Animal
+Person "1" --* "0.*" Post
+Person "1" --* "0.*" Comment
+Person "1" --* "0.*" ResponseComment
+Person "1" --* "0.*" AdoptionContract
 
-Post "1" -- "0.*" Comment
-Post "1" -- "1" Animal
-Post "1" -- "1" AdoptionContract
+Post "1" --* "0.*" Comment
+Post "1" --o "1" Animal
+Post "1" --* "1" AdoptionContract
 
-Comment "1" -- "0.*" ResponseComment
+Comment "1" --* "0.*" ResponseComment
 
 @enduml
