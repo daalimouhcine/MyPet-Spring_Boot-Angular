@@ -1,0 +1,59 @@
+@startuml
+class Person {
+    -Long id
+    -String referencePerson
+    -String firstname
+    -String lastname
+    -String email
+    -String password
+    -String phone
+    -String address
+    -String city
+}
+
+class Animal {
+    -Long id
+    -String referenceAnimal
+    -String name
+    -String type
+    -number age
+    -String[] pictures
+}
+
+class AdoptionContract {
+    -Long id
+}
+
+class Post {
+    -Long id
+    -String referencePost
+    -String title
+    -String description
+    -number days
+}
+
+class Comment {
+    -Long id
+    -String content
+}
+
+class ResponseComment {
+    -Long id
+    -String content
+}
+
+
+Person "1" -- "0.*" Animal
+Person "1" -- "0.*" Post
+Person "1" -- "0.*" Comment
+Person "1" -- "0.*" ResponseComment
+Person "1" -- "0.*" AdoptionContract
+
+Post "1" -- "0.*" Comment
+Post "1" -- "1" Animal
+Post "1" -- "1" AdoptionContract
+
+Comment "1" -- "0.*" ResponseComment
+
+
+@enduml
