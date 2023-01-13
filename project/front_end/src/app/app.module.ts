@@ -7,31 +7,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
-import { PostsComponent } from './posts/posts.component';
+// import { MatTabsModule } from '@angular/material/tabs';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    MatTabsModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
