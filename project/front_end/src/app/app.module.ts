@@ -13,10 +13,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
-import { AddOfferModalComponent } from './components/add-offer-modal/add-offer-modal.component';
-import { AddPostModalComponent } from './components/add-post-modal/add-post-modal.component';
-import { PostComponent } from './components/post/post.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { PostsComponent } from './posts/posts.component';
 
 
@@ -24,12 +20,7 @@ import { PostsComponent } from './posts/posts.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    AddOfferModalComponent,
-    AddPostModalComponent,
-    PostComponent,
-    NavbarComponent,
-    PostsComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
