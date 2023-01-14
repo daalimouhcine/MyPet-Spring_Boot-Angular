@@ -30,15 +30,31 @@ public class PersonController {
         return ResponseEntity.ok(personResponses);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/edit")
     public ResponseEntity<PersonResponse> updatePerson(@RequestBody PersonRequest personRequest) {
         PersonDto personDto = new PersonDto();
         PersonDto targetPerson = personService.findPersonByReferencePerson(personRequest.getReferencePerson());
+        System.out.println(targetPerson.getEmail());
+        System.out.println(personRequest.getEmail());
         BeanUtils.copyProperties(personRequest, personDto);
+        System.out.println(personDto.getPassword());
         personDto.setId(targetPerson.getId());
         PersonDto updatedPerson = personService.updatePerson(personDto);
+        System.out.println(updatedPerson.getEmail());
         PersonResponse personResponse = new PersonResponse();
         BeanUtils.copyProperties(updatedPerson, personResponse);
+        System.out.println(personResponse.getEmail());
         return ResponseEntity.ok(personResponse);
     }
+
+
+
+    @GetMapping("/{referencePerson}")
+    public ResponseEntity<PersonResponse> getPersonByReferencePerson(@PathVariable String referencePerson) {
+        PersonDto personDto = personService.findPersonByReferencePerson(referencePerson);
+        PersonResponse personResponse = new PersonResponse();
+        BeanUtils.copyProperties(personDto, personResponse);
+        return ResponseEntity.ok(personResponse);
+    }
+
 }

@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**", "/test")
+                .requestMatchers("/api/auth/**", "/api/animal/**")
                 .permitAll()
                 .and()
                 .sessionManagement()

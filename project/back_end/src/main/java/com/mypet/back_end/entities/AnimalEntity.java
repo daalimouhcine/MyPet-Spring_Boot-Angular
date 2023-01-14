@@ -29,7 +29,7 @@ public class AnimalEntity {
     private int age;
 
     @Column
-    private List<String> pictures = new ArrayList<String>();
+    private String picture;
 
     @ManyToOne
     @JoinColumn(name = "person_id")

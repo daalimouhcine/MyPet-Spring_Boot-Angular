@@ -6,7 +6,6 @@ import com.mypet.back_end.repositories.PersonRepository;
 import com.mypet.back_end.services.PersonService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -91,6 +90,7 @@ public class PersonServiceImp implements PersonService {
         personEntity.setAddress(personDto.getAddress());
         personEntity.setCity(personDto.getCity());
         personEntity.setPhone(personDto.getPhone());
+        personEntity.setPassword(passwordEncoder.encode(personDto.getPassword()));
         PersonEntity updatedPerson = personRepository.save(personEntity);
         PersonDto updatedPersonDto = new PersonDto();
         BeanUtils.copyProperties(updatedPerson, updatedPersonDto);
