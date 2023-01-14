@@ -12,7 +12,13 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { EditComponent } from './components/profile/edit/edit.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { PostComponent } from './components/create/post/post.component';
+import { AnimalComponent } from './components/create/animal/animal.component';
+
+import {MatSelectModule} from '@angular/material/select';
+import {MatOptionModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -22,7 +28,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     HomeComponent,
     NavbarComponent,
-    ProfileComponent
+    EditComponent,
+    HistoryComponent,
+    PostComponent,
+    AnimalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +39,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent],

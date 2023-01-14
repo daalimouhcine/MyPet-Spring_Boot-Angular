@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {catchError, Observable, of, switchMap } from 'rxjs';
-import { CONSTANTS } from '../shared/components/constantes';
-import { CurrentPerson, Person } from './interfaces/Person';
+import { CONSTANTS } from '../../shared/components/constantes';
+import { CurrentPerson, Person } from '../interfaces/Person';
 
 @Injectable({
   providedIn: 'root'

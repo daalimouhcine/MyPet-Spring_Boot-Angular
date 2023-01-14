@@ -4,11 +4,11 @@ export class Person {
 }
 
 export class CurrentPerson {
-    referencePerson: String = "";
-    firstName: String = "";
-    lastName: String = "";
-    email: String = "";
-    phone: String = "";
-    address: String = "";
-    city: String = "";
+    referencePerson: string = "";
+    firstName: string = "";
+    lastName: string = "";
+    email: string = "";
+    phone: string = "";
+    address: string = "";
+    city: string = "";
 }
