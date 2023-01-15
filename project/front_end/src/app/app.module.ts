@@ -19,6 +19,7 @@ import { AnimalComponent } from './components/create/animal/animal.component';
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
+import { CommentsComponent } from './shared/components/comments/comments.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatOptionModule} from '@angular/material/core';
     EditComponent,
     HistoryComponent,
     PostComponent,
-    AnimalComponent
+    AnimalComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
