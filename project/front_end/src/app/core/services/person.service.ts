@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CurrentPerson } from '../interfaces/Person';
-import { CONSTANTS } from 'src/app/shared/components/constantes';
+import { CONSTANTS } from 'src/app/shared/components/constants';
 import { AuthService } from './auth.service';
 
 @Injectable({
