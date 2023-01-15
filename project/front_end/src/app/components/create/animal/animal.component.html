@@ -73,6 +73,8 @@
   </div>
 </div>
 
+<!-- Code animals -->
+
 <div class="bg-white">
   <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
     <div class="space-y-12">
@@ -95,7 +97,7 @@
         class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8"
       >
         <li *ngFor="let animal of myAnimals">
-          <div class="space-y-4 ">
+          <div class="space-y-4">
             <div class="aspect-w-3 aspect-h-2">
               <img
                 class="rounded-lg object-cover shadow-lg"
@@ -106,19 +108,22 @@
 
             <div class="space-y-2 flex flex-col justify-between mx-auto">
               <div class="space-y-1 w-fit text-lg font-medium leading-6">
-                <h3>Name: {{animal.name}}</h3>
+                <h3>Name: {{ animal.name }}</h3>
                 <div class="flex flex-wrap gap-5">
-                  <p>Type: <span class="text-indigo-600"> {{animal.type}} </span></p>
-                  <p class="">Age: {{animal.age}}</p>
+                  <p>
+                    Type:
+                    <span class="text-indigo-600"> {{ animal.type }} </span>
+                  </p>
+                  <p class="">Age: {{ animal.age }}</p>
                 </div>
               </div>
-              <div class="w-fit">
+              <div class="w-fit ml-auto">
                 <button
                   (click)="deleteAnimal(animal.referenceAnimal)"
                   type="button"
                   class="w-fit flex items-center justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-100"
                 >
-                    <p>Delete</p>
+                  <p>Delete</p>
                 </button>
               </div>
             </div>
@@ -129,11 +134,10 @@
   </div>
 </div>
 
-
 <!-- Code add animal form modal starts -->
 
 <div
-  [ngClass]="{ 'top-0': openModal, '-top-100': !openModal }"
+  [ngClass]="{ 'top-0 block': openModal, '-top-100 hidden': !openModal }"
   class="py-6 h-screen w-screen fixed bg-gray-700 transition duration-150 ease-in-out left-0"
   id="modal"
 >
@@ -191,7 +195,7 @@
           </svg>
         </div>
         <input
-        [ngClass]="{ 'border-red-500': age && age.invalid && age.touched }"
+          [ngClass]="{ 'border-red-500': age && age.invalid && age.touched }"
           id="age"
           formControlName="age"
           class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm rounded border"
@@ -226,7 +230,7 @@
           </svg>
         </div>
         <input
-        [ngClass]="{ 'border-red-500': type && type.invalid && type.touched }"
+          [ngClass]="{ 'border-red-500': type && type.invalid && type.touched }"
           formControlName="type"
           type="text"
           id="type"
@@ -244,17 +248,19 @@
           class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer"
         ></div>
         <input
-        [ngClass]="{ 'border-red-500': picture && picture.invalid && picture.touched }"
+          [ngClass]="{
+            'border-red-500': picture && picture.invalid && picture.touched
+          }"
           formControlName="picture"
           type="text"
           id="picture"
-          class="mb-8 text-gray-600 focus:outline-none focus:border font-normal w-full h-10 flex items-center pl-3 text-sm  rounded border"
+          class="mb-8 text-gray-600 focus:outline-none focus:border font-normal w-full h-10 flex items-center pl-3 text-sm rounded border"
           placeholder="https://www.petimage.com/images/cat..."
         />
       </div>
       <div class="flex items-center justify-start w-full">
         <button
-            [disabled]="addAnimalForm.invalid"
+          [disabled]="addAnimalForm.invalid"
           type="submit"
           class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
         >

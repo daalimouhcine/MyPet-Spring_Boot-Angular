@@ -6,7 +6,8 @@ import { CurrentPerson } from 'src/app/core/interfaces/Person';
 import { Alert } from 'src/app/core/interfaces/alert';
 import { Animal } from 'src/app/core/interfaces/animal';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { CONSTANTS } from 'src/app/shared/components/constantes';
+import { CONSTANTS } from 'src/app/shared/components/constants';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-animal',
@@ -131,28 +132,40 @@ export class AnimalComponent implements OnInit {
   }
 
   deleteAnimal(referenceAnimal: string) {
-    this.loading = true;
-    this.http
-      .delete(CONSTANTS.urls.deleteAnimal + referenceAnimal)
-      .subscribe((response: any) => {
-        this.loading = false;
-        console.log(response);
-        this.messageAlert = 'Animal deleted successfully';
-        this.getMyAnimals();
-        this.successAlert();
-      }),
-      (error: any) => {
-        this.loading = false;
-        if(error.status === 200) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.loading = true;
+        this.http
+          .delete(CONSTANTS.urls.deleteAnimal + referenceAnimal)
+          .subscribe((response: any) => {
+            this.loading = false;
+            console.log(response);
             this.messageAlert = 'Animal deleted successfully';
             this.getMyAnimals();
             this.successAlert();
-        } else {
-            console.log(error);
-            this.messageAlert = 'Error deleting animal';
-            this.errorAlert();
-        }
-      };
+          }),
+          (error: any) => {
+            this.loading = false;
+            if(error.status === 200) {
+                this.messageAlert = 'Animal deleted successfully';
+                this.getMyAnimals();
+                this.successAlert();
+            } else {
+                console.log(error);
+                this.messageAlert = 'Error deleting animal';
+                this.errorAlert();
+            }
+          };
+      }
+    })
   }
 
   successAlert(): void {
