@@ -41,6 +41,18 @@ public class AnimalServiceImp implements AnimalService {
     }
 
     @Override
+    public List<AnimalDto> findAllAnimalsByPersonReferenceNewPost(String referencePerson) {
+        List<AnimalEntity> animalEntities = animalRepository.findByPersonReferenceNewPost(referencePerson);
+        List<AnimalDto> animalDtos = new ArrayList<>();
+        for (AnimalEntity animalEntity : animalEntities) {
+            AnimalDto animalDto = new AnimalDto();
+            BeanUtils.copyProperties(animalEntity, animalDto);
+            animalDtos.add(animalDto);
+        }
+        return animalDtos;
+    }
+
+    @Override
     public AnimalDto addAnimal(AnimalDto animalDto) {
         animalDto.setReferenceAnimal(animalDto.getType() + "-" + animalDto.getName() + "-" + animalDto.getAge());
         AnimalEntity animalEntity = new AnimalEntity();

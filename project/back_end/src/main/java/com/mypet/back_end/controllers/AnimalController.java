@@ -50,6 +50,18 @@ public class AnimalController {
         return ResponseEntity.ok(animalResponses);
     }
 
+    @GetMapping("/by-person-new-post/{referencePerson}")
+    public ResponseEntity<List<AnimalResponse>> findAllAnimalsByPersonReferenceForNewPost(@PathVariable String referencePerson) {
+        List<AnimalDto> animalDtos = animalService.findAllAnimalsByPersonReferenceNewPost(referencePerson);
+        List<AnimalResponse> animalResponses = new ArrayList<>();
+        for (AnimalDto animalDto : animalDtos) {
+            AnimalResponse animalResponse = new AnimalResponse();
+            BeanUtils.copyProperties(animalDto, animalResponse);
+            animalResponses.add(animalResponse);
+        }
+        return ResponseEntity.ok(animalResponses);
+    }
+
     @DeleteMapping("/delete/{referenceAnimal}")
     public ResponseEntity<Boolean> deleteAnimal(@PathVariable String referenceAnimal) {
 

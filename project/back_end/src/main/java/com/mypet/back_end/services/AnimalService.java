@@ -7,6 +7,7 @@ import java.util.List;
 public interface AnimalService {
     List<AnimalDto> findAllAnimals();
     List<AnimalDto> findAllAnimalsByPersonReference(String referencePerson);
+    List<AnimalDto> findAllAnimalsByPersonReferenceNewPost(String referencePerson);
     AnimalDto addAnimal(AnimalDto animalDto);
     AnimalDto findAnimalByReferenceAnimal(String referenceAnimal);
     AnimalDto findAnimalById(Long id);
