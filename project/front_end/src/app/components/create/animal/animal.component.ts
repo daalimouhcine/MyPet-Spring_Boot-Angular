@@ -99,6 +99,7 @@ export class AnimalComponent implements OnInit {
     }
   }
 
+  
   addAnimalForm: FormGroup = new FormGroup({
     referencePerson: new FormControl(''),
     name: new FormControl('', [
@@ -115,7 +116,7 @@ export class AnimalComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    picture: new FormControl('', [Validators.required]),
+    picture: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
   });
 
   get name() {
