@@ -52,6 +52,9 @@ export class AuthService {
     console.log(registerData);
     return this.http.post(CONSTANTS.urls.register, registerData);
   }
+
+
+  
   loginPerson(loginData: Person) {
     console.log(loginData);
     return this.http.post(CONSTANTS.urls.login, loginData);
