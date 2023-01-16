@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/person/**", "/api/animal/add", "/api/post/add", "/api/comment/add")
+                .requestMatchers("/api/person/**","api/adopt/**", "/api/animal/add", "/api/post/add", "/api/comment/add")
                 .hasAnyAuthority("PERSON")
 //                .permitAll()
                 .anyRequest()

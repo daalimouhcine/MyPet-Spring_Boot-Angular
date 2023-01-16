@@ -9,4 +9,5 @@ export class Post {
     description: string = '';
     days: number = 0;
     commentNumber: number = 0;
+    adopted: boolean = false;
 }

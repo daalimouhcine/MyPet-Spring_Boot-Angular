@@ -13,4 +13,5 @@ public class PostResponse {
     private PersonResponse person;
     private AnimalResponse animal;
     private int commentNumber = 0;
+    private boolean adopted = false;
 }

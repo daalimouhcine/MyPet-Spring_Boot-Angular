@@ -147,15 +147,21 @@
             </div>
           </div>
           <button
-            *ngIf="
-              post.person.referencePerson !== currentPerson.referencePerson
-            "
-            (click)="adopt(post.referencePost)"
-            type="button"
-            class="w-fit ml-auto rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
-          >
-            <p>Adopt</p>
-          </button>
+          *ngIf="
+            post.person.referencePerson !== currentPerson.referencePerson && !post.adopted
+          "
+          (click)="newAdoption(post)"
+          type="button"
+          class="w-fit ml-auto rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+        >
+          <p>Adopt</p>
+        </button>
+        <div
+        *ngIf="post.adopted"
+        class="w-fit ml-auto rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100"
+      >
+        <p>Adopted</p>
+      </div>
         </div>
       </div>
     </div>

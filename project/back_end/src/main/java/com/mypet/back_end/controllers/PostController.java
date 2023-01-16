@@ -6,6 +6,7 @@ import com.mypet.back_end.requests.PostRequest;
 import com.mypet.back_end.responses.AnimalResponse;
 import com.mypet.back_end.responses.PersonResponse;
 import com.mypet.back_end.responses.PostResponse;
+import com.mypet.back_end.services.AdoptionContractService;
 import com.mypet.back_end.services.CommentService;
 import com.mypet.back_end.services.PostService;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,8 @@ public class PostController {
     private PostService postService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private AdoptionContractService adoptionContractService;
 
 
     @GetMapping("/all")
@@ -42,6 +45,9 @@ public class PostController {
             List<CommentDto> commentDtos = commentService.findAllCommentsByPostReference(postDto.getReferencePost());
             postResponse.setCommentNumber(commentDtos.size());
             postResponses.add(postResponse);
+            if(adoptionContractService.getAdoptionContractByReferencePost(postResponse.getReferencePost()) != null){
+                postResponse.setAdopted(true);
+            }
         }
         return ResponseEntity.ok(postResponses);
     }

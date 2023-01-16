@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { CONSTANTS } from '../constants';
 import { Comment } from 'src/app/core/interfaces/comment';
 import Swal from 'sweetalert2';
+import { AdoptService } from 'src/app/core/services/adopt.service';
 
 @Component({
   selector: 'app-comments',
@@ -33,6 +34,7 @@ export class CommentsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private adopt: AdoptService,
     private router: Router
   ) {}
 
@@ -65,7 +67,7 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  adopt(referencePost: string) {
+  newAdoption(post: Post) {
     if (
       this.authService.currentPerson == null ||
       this.authService.currentPerson == undefined ||
@@ -75,8 +77,39 @@ export class CommentsComponent implements OnInit {
     ) {
       this.router.navigate(['/login']);
     } else {
-      console.log('adopt');
-    }
+      Swal.fire({
+        title: 'Sweet!',
+        text: 'Do you agree to adopt the pet for ' + post.days + ' days?',
+        imageUrl: post.animal.picture,
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'pet image',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, adopt it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adopt
+            .adoptPet(
+              this.authService.currentPerson.referencePerson,
+              post.referencePost
+            )
+            .subscribe(
+              (response: any) => {
+                Swal.fire(
+                  'Adopted!',
+                  'You have adopted the pet successfully.',
+                  'success'
+                );
+                console.log(response);
+                this.toggleComment();
+              },
+              (error) => {
+                console.log(error);
+                Swal.fire('Error!', "You can't adopt the pet.", 'error');
+              }
+            );
+        }
+      });    }
   }
 
   httpOptions = {
@@ -115,29 +148,29 @@ export class CommentsComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result:any) => {
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result: any) => {
       if (result.isConfirmed) {
-        this.http
-        .delete(CONSTANTS.urls.deleteComment + id)
-        .subscribe((response: any) => {
-          console.log(response);
-          if(response == true) {
-            this.successAlert();
-            this.messageAlert = 'Comment deleted successfully';
-            this.getComments();
-          } else {
+        this.http.delete(CONSTANTS.urls.deleteComment + id).subscribe(
+          (response: any) => {
+            console.log(response);
+            if (response == true) {
+              this.successAlert();
+              this.messageAlert = 'Comment deleted successfully';
+              this.getComments();
+            } else {
+              this.errorAlert();
+              this.messageAlert = 'Error deleting comment';
+            }
+          },
+          (error) => {
+            console.log(error);
             this.errorAlert();
             this.messageAlert = 'Error deleting comment';
           }
-        },
-        (error) => {
-          console.log(error);
-          this.errorAlert();
-          this.messageAlert = 'Error deleting comment';
-        });
+        );
       }
-    })
+    });
   }
 
   addComment: FormGroup = new FormGroup({

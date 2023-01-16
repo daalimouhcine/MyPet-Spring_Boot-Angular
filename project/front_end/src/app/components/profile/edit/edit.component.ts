@@ -28,10 +28,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     if (!this.authService.accessToken)
       this.router.navigate(['profile/history']);
-    this.gerPersonInfo();
+    this.getPersonInfo();
   }
 
-  gerPersonInfo(): void {
+  getPersonInfo(): void {
     this.personService
       .getPersonProfile(
         this.authService.getPersonFromLocalStorage().referencePerson
@@ -70,7 +70,7 @@ export class EditComponent implements OnInit {
           newPerson!.referencePerson = this.person!.referencePerson;
           newPerson!.email = this.person!.email;
           this.authService.addPersonToLocalStorage(newPerson!);
-          this.gerPersonInfo();
+          this.getPersonInfo();
         }),
         (error: any) => {
           this.messageAlert = 'update failed';

@@ -16,5 +16,7 @@ export const CONSTANTS = {
         getComments: "http://localhost:8080/api/comment/by-post/",
         addComment: "http://localhost:8080/api/comment/add",
         deleteComment: "http://localhost:8080/api/comment/delete/",
+        adopt: "http://localhost:8080/api/adopt/add",
+        adoptList: "http://localhost:8080/api/adopt/by-person/",
     }
 }
