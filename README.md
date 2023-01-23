@@ -54,7 +54,7 @@ cd frontend
 ```
 5. Install the frontend dependencies
 ```
-yarn install
+npm install
 ```
 6. Create a PostgreSQL database and update the `application.properties` file in the `backend` directory with the correct database credentials.
 7. Run the backend server
